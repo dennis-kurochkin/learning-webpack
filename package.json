@@ -1,0 +1,28 @@
+{
+  "name": "learning-webpack",
+  "version": "0.1.0",
+  "description": "I learn webpack here",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dennis-kurochkin/learning-webpack.git"
+  },
+  "keywords": [
+    "webpack"
+  ],
+  "author": "Dennis Kurochkin <dennis.kurochkin@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dennis-kurochkin/learning-webpack/issues"
+  },
+  "homepage": "https://github.com/dennis-kurochkin/learning-webpack#readme",
+  "dependencies": {
+    "chalk": "^4.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
+}
