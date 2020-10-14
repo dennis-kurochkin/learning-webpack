@@ -29,6 +29,30 @@ module.exports = {
           'style-loader', // adds styles in html head tag, has to be installed
           'css-loader' // allows to import styles into JavaScript, has to be installed
         ]
+      },
+      {
+        test: /\.(png|jpg|jpeg|svg|webp|gif)$/,
+        use: [
+          'file-loader'
+        ]
+      },
+      {
+        test: /\.(ttf|woff|woff2|eot)$/,
+        use: [
+          'file-loader'
+        ]
+      },
+      {
+        test: /\.xml$/,
+        use: [
+          'xml-loader'
+        ]
+      },
+      {
+        test: /\.csv$/,
+        use: [
+          'csv-loader'
+        ]
       }
     ]
   }
