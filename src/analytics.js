@@ -14,7 +14,7 @@ const createAnalytics = () => {
     },
 
     getClicks() {
-      return isDestroyed ? 'Analytics is destroyed' : counter;
+      return isDestroyed ? 'Analytics HAHAHAA is destroyed' : counter;
     }
 
   }
