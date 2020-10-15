@@ -14,6 +14,18 @@ module.exports = {
     filename: 'js/[name].[contenthash].js', // file names pattern
     path: path.resolve(__dirname, 'dist') // where to output 'em
   },
+  resolve: { // resolve object
+    extensions: ['.js', '.json', '.png'], // file extensions allowed to import without pointing the extension
+    alias: { // aliases
+      '@models': path.resolve(__dirname, 'src/models'), // create alias for models folder
+      '@': path.resolve(__dirname, 'src') // create alias for src folder
+    }
+  },
+  optimization: {
+    splitChunks: {
+      chunks: 'all'
+    }
+  },
   plugins: [ // webpack plugins
     new HTMLWebpackPlugin({ // plugin to work with html
       title: 'Webpack', // if html template not defined, use this title

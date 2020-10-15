@@ -11,7 +11,7 @@ class Post {
       title: this.title,
       img: this.img,
       date: this.date.toJSON()
-    })
+    }, null, 2)
   }
 
 }
