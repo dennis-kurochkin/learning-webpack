@@ -10,4 +10,4 @@ console.log('Post to String', post.toString());
 
 console.log(csv);
 
-$('pre').html(post.toString());
+$('pre').html(post.toString()).css('font-size', '20px').css('color', 'gray');
