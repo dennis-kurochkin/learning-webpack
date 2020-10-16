@@ -3,10 +3,32 @@ const HTMLWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const TerserWebpackPlugin = require('terser-webpack-plugin');
+const OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin');
+const { config } = require('process');
 
 const ASSET_PATH = process.env.ASSET_PATH || '/';
 const isDev = process.env.NODE_ENV === 'development';
-console.log('Is dev?', isDev);
+const isProd = !isDev;
+
+const optimization = () => {
+  const config = {
+    splitChunks: {
+      chunks: 'all'
+    }
+  };
+
+  if (isProd) {
+    config.minimizer = [
+      new OptimizeCssAssetsWebpackPlugin(),
+      new TerserWebpackPlugin()
+    ]
+  }
+
+  return config;
+};
+
+const filename = ext => isDev ? `[name].${ext}` : `[name].[hash].${ext}`;
 
 module.exports = {
   context: path.resolve(__dirname, 'src'), // webpack working directory
@@ -17,7 +39,7 @@ module.exports = {
   },
   mode: 'development', // default build mode
   output: { // output
-    filename: 'js/[name].[contenthash].js', // file names pattern
+    filename: filename('js'), // file names pattern
     path: path.resolve(__dirname, 'dist'), // where to output 'em,
     publicPath: ASSET_PATH
   },
@@ -28,11 +50,7 @@ module.exports = {
       '@': path.resolve(__dirname, 'src') // create alias for src folder
     }
   },
-  optimization: {
-    splitChunks: {
-      chunks: 'all'
-    }
-  },
+  optimization: optimization(),
   devServer: {
     port: 3000,
     hot: isDev
@@ -42,7 +60,7 @@ module.exports = {
       title: 'Webpack', // if html template not defined, use this title
       template: './index.html', // create html files from this template,
       minify: {
-         collapseWhitespace: isDev
+        collapseWhitespace: isProd
       }
     }),
     new CleanWebpackPlugin(), // plugin to clean dist directory
@@ -56,8 +74,9 @@ module.exports = {
     }),
     new MiniCssExtractPlugin({
       'process.env.ASSET_PATH': JSON.stringify(ASSET_PATH),
-      filename: '[name].[contenthash].css'
-    })
+      filename: filename('css')
+    }),
+    new TerserWebpackPlugin()
   ],
   module: { // loaders which allow webpack to work with various file types
     rules: [ // rules for webpack to follow
@@ -74,6 +93,22 @@ module.exports = {
           },
           // 'style-loader', // adds styles in html head tag, has to be installed
           'css-loader' // allows to import styles into JavaScript, has to be installed
+        ]
+      },
+      {
+        test: /\.s[ac]ss$/,
+        use: [
+          {  // compiles css to a single file
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              publicPath: ASSET_PATH,
+              hmr: isDev,
+              reloadAll: true
+            }
+          },
+          // 'style-loader', // adds styles in html head tag, has to be installed
+          'css-loader', // allows to import styles into JavaScript, has to be installed
+          'sass-loader'
         ]
       },
       {

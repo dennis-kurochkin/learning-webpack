@@ -3,6 +3,7 @@ import webpackLogo from './assets/webpack-logo.png';
 import csv from './assets/data.csv';
 import $ from 'jquery';
 import './css/styles.css';
+import './css/index.scss';
 
 const post = new Post('Webpack Post Title', webpackLogo);
 
