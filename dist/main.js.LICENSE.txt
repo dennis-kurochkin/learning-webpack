@@ -1,0 +1,35 @@
+/*! CommonJS bailout: module.exports is used directly at 1:0-14 */
+
+/*! export default [provided] [no usage info] [missing usage info prevents renaming] */
+
+/*! exports [not provided] [no usage info] */
+
+/*! namespace exports */
+
+/*! other exports [not provided] [no usage info] */
+
+/*! runtime requirements: __webpack_exports__, __webpack_require__.r, __webpack_require__.d, __webpack_require__.* */
+
+/*! runtime requirements: __webpack_exports__, __webpack_require__.r, __webpack_require__.p, __webpack_require__.d, __webpack_require__.* */
+
+/*! runtime requirements: __webpack_require__, __webpack_require__.n, __webpack_require__.r, __webpack_exports__, __webpack_require__.* */
+
+/*! runtime requirements: module */
+
+/*! unknown exports (runtime-defined) */
+
+/*!******************!*\
+  !*** ./index.js ***!
+  \******************/
+
+/*!************************!*\
+  !*** ./models/Post.js ***!
+  \************************/
+
+/*!*************************!*\
+  !*** ./assets/data.csv ***!
+  \*************************/
+
+/*!*********************************!*\
+  !*** ./assets/webpack-logo.png ***!
+  \*********************************/
